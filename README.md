@@ -2,7 +2,7 @@
 
 Team:
 
-* Person 1 - Which microservice?
+* Person 1 - Nesh Sharma
 * Person 2 - Which microservice?
 Mick Preston - Sales Microservice
 

@@ -18,8 +18,7 @@ import SalesHistoryList from './SalespersonHistory';
 import ManufacturerList from './MaufacturersList'
 import NewManufacturer from './CreateManufacturer';
 import ModelList from './ModelsList';
-// import ManufacturerList from './MaufacturersList'
-
+import CreateModel from './CreateModel';
 
 function App() {
   return (
@@ -45,6 +44,7 @@ function App() {
           </Route>
           <Route path="/models">
             <Route index element={<ModelList />} />
+            <Route path="/models/new" element={<CreateModel />} />
           </Route>
 
           <Route path='/salespeople'>

@@ -21,6 +21,8 @@ function NewSale() {
             setAutomobiles(data.autos)
         }
     }
+    const FilteredAutos = Automobiles.filter((a) => a.sold === false)
+
 
 
     const fetchSalespeople = async () => {
@@ -118,7 +120,7 @@ function NewSale() {
                         <div className="mb-3">
                             <select onChange={handleAutoVinChange} value={AutomobileVin} name="Automobile Vin" required id="Automobile Vin" className="form-select">
                                 <option value="">Choose an automobile VIN</option>
-                                {Automobiles.map(automobile => {
+                                {FilteredAutos.map(automobile => {
                                     return (
                                         <option key={automobile.id} value={automobile.vin}>
                                             {automobile.vin}

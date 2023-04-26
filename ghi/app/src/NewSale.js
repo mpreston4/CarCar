@@ -6,12 +6,10 @@ function NewSale() {
     const [Salespeople, setSalespeople] = useState([]);
     const [Customers, setCustomers] = useState([]);
 
-
     const [AutomobileVin, setAutomobile] = useState('')
     const [Salesperson, setSalesperson] = useState('')
     const [Customer, setCustomer] = useState('')
     const [Price, setPrice] = useState('');
-
 
     const fetchVIN = async () => {
         const response = await fetch('http://localhost:8090/api/automobiles/')
@@ -22,8 +20,6 @@ function NewSale() {
         }
     }
     const FilteredAutos = Automobiles.filter((a) => a.sold === false)
-
-
 
     const fetchSalespeople = async () => {
         const response = await fetch('http://localhost:8090/api/salespeople/')
@@ -114,15 +110,12 @@ function NewSale() {
                 <div className="shadow p-4 mt-4">
                     <h1>Record a Sale</h1>
                     <form onSubmit={handleSubmit} id="create-sales-form">
-
-
-
                         <div className="mb-3">
                             <select onChange={handleAutoVinChange} value={AutomobileVin} name="Automobile Vin" required id="Automobile Vin" className="form-select">
                                 <option value="">Choose an automobile VIN</option>
                                 {FilteredAutos.map(automobile => {
                                     return (
-                                        <option key={automobile.id} value={automobile.vin}>
+                                        <option key={automobile.vin} value={automobile.vin}>
                                             {automobile.vin}
                                         </option>
                                     )
@@ -157,8 +150,6 @@ function NewSale() {
                             <input onChange={handlePriceChange} value={Price} placeholder="Price" required type="number" name="Price" id="Price" className="form-control" />
                             <label htmlFor="Price"></label>
                         </div>
-
-
                         <button className="btn btn-primary">Create</button>
                     </form>
                 </div>

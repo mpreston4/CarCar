@@ -14,6 +14,7 @@ function SalesHistoryList() {
 
     const [Salespeople, setSalespeople] = useState([]);
     const [Salesperson, setSalesperson] = useState('')
+
     const getSalespeople = async () => {
         const response = await fetch('http://localhost:8090/api/salespeople/')
 
@@ -37,6 +38,7 @@ function SalesHistoryList() {
     }
 
     return (
+
 
         <div className="container">
             <div>
@@ -64,14 +66,14 @@ function SalesHistoryList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {Sales.filter(sale => sale.salesperson.employee_id === Salesperson)
+                    {Sales.filter(sale => sale.salesperson.employee_id.includes(Salesperson))
                         .map(sale => {
                             return (
                                 <tr key={sale.id}>
                                     <td>{sale.salesperson.first_name} {sale.salesperson.last_name}</td>
                                     <td>{sale.customer.first_name} {sale.customer.last_name}</td>
                                     <td>{sale.automobile.vin}</td>
-                                    <td>{sale.price}</td>
+                                    <td>${sale.price}</td>
                                 </tr>
                             );
                         })}

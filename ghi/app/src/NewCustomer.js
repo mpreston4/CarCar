@@ -75,7 +75,7 @@ function NewCustomer() {
                         </div>
                         <div className="form-floating mb-3">
                             <input onChange={handleAddressChange} value={Address} placeholder="Adrress" required type="text" name="Adress" id="Adress" className="form-control" />
-                            <label htmlFor="Adress">Adress</label>
+                            <label htmlFor="Adress">Address</label>
                         </div>
                         <div className="form-floating mb-3">
                             <input onChange={handlePhoneNumberChange} value={PhoneNumber} placeholder="Phone Number" required type="text" name="Phone Number" id="Phone Number" className="form-control" />

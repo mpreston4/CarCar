@@ -94,19 +94,19 @@ function AppointmentForm() {
             <form onSubmit={handleSubmit} id="create-conference-form">
               <div className="form-floating mb-3">
                 <input onChange={handleVin} value={vin} placeholder="vin" required type="text" name="vin" id="vin" className="form-control"/>
-                <label htmlFor="name">Automobile VIN</label>
+                <label htmlFor="vin">Automobile VIN</label>
               </div>
               <div className="form-floating mb-3">
                 <input onChange={handleCustomer} value={customer} placeholder="customer" required type="text" name = "customer" id="customer" className="form-control"/>
-                <label htmlFor="room_count">Customer</label>
+                <label htmlFor="customer">Customer</label>
               </div>
               <div className="form-floating mb-3">
                 <input  onChange={handleDate} value={date} placeholder="date" required type="date" name = "date" id="date" className="form-control"/>
-                <label htmlFor="room_count">Date</label>
+                <label htmlFor="date">Date</label>
               </div>
               <div className="form-floating mb-3">
                 <input onChange={handleTime} value={time} placeholder="time" required type="time" name = "time" id="time" className="form-control"/>
-                <label htmlFor="room_count">Time</label>
+                <label htmlFor="time">Time</label>
               </div>
               <div className="mb-3">
                 <select onChange={handleTechnican} value={technician} required id="technician"  name = "technician" className="form-select">

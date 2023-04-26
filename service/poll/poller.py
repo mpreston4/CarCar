@@ -19,7 +19,9 @@ def get_automobiles():
     for automobile in content["autos"]:
         AutomobileVO.objects.update_or_create(
             vin = automobile["vin"],
-            defaults = {}
+            defaults = {
+                "sold": automobile["sold"]
+            }
         )
 def poll(repeat = True):
     while True:

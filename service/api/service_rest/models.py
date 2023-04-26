@@ -11,19 +11,17 @@ class Technicians (models.Model):
     
 class AutomobileVO (models.Model):
     vin = models.CharField(max_length=17, unique=True)
+    sold = models.BooleanField(default=False)
     
     def __str__(self):
         return self.vin
 
 class Appointment (models.Model):
-    date_time = models.DateTimeField()
+    date = models.DateField(null=True)
+    time = models.TimeField(null=True)
     reason = models.TextField()
     status = models.CharField(max_length=200)
-    vin = models.ForeignKey(
-        AutomobileVO,
-        related_name= "appointment_vin",
-        on_delete=models.CASCADE,
-    )
+    vin = models.CharField(max_length=17)
     customer = models.CharField(max_length=200)
     technician = models.ForeignKey(
         Technicians,

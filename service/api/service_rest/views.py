@@ -8,11 +8,13 @@ class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
     properties = [
     "vin",
+    "sold",
     ]
 
 class TechnicianEncoder(ModelEncoder):
     model = Technicians
     properties = [
+        "id",
         "first_name", 
         "last_name",
         "employee_id",
@@ -22,7 +24,9 @@ class TechnicianEncoder(ModelEncoder):
 class AppointmentEncoder(ModelEncoder):
     model = Appointment
     properties = [
-        "date_time",
+        "id",
+        "date",
+        "time",
         "reason",
         "status",
         "vin",
@@ -30,7 +34,6 @@ class AppointmentEncoder(ModelEncoder):
         "technician",
     ]
     encoders = {
-        "vin": AutomobileVOEncoder(),
         "technician": TechnicianEncoder(),
     }
 
@@ -51,6 +54,14 @@ def api_technicians(request):
             safe=False,
         )
 
+@require_http_methods("GET")
+def api_automobiles(request):
+    if request.method == "GET":
+        automobiles = AutomobileVO.objects.all()
+        return JsonResponse(
+            {"automobiles": automobiles},
+            encoder=AutomobileVOEncoder,
+        )
 @require_http_methods(["DELETE"])
 def api_delete_techinicians(request, pk):
     if request.method == "DELETE":
@@ -67,15 +78,6 @@ def api_appointment(request):
         )
     else:
         content = json.loads(request.body)
-        try: 
-            automobile_vin = content["vin"]
-            vin = AutomobileVO.objects.get(vin=automobile_vin)
-            content["vin"] = vin
-        except AutomobileVO.DoesNotExist:
-            return JsonResponse(
-                {"message": "Invalid vin"},
-                status=400,
-            )
         try:
             technician_name = content["technician"]
             technician = Technicians.objects.get(first_name=technician_name)
@@ -99,15 +101,6 @@ def api_modify_appointment(request, pk):
     else:
         content = json.loads(request.body)
         try:
-            if "vin" in content:
-                vin = AutomobileVO.objects.get(id=content["vin"])
-                content["vin"] = vin
-        except AutomobileVO.DoesNotExist:
-            return JsonResponse(
-                {"message": "Invalid vin"},
-                status=400,
-            )
-        try:
             if "technician" in content:
                 technician = Technicians.objects.filter(id=content["technician"])
                 content["technician"] = technician
@@ -123,4 +116,34 @@ def api_modify_appointment(request, pk):
             encoder=AppointmentEncoder,
             safe=False
         )
-        
+@require_http_methods(["PUT"]) 
+def api_finish_appointment(request, pk):
+    if request.method == 'PUT':
+        content = json.loads(request.body)
+        if "status" in content:
+            status = "finish"
+            content["status"] = status
+        appointment = Appointment.objects.get(id=pk)
+        Appointment.objects.filter(id=pk).update(**content)
+        return JsonResponse(
+        appointment,
+        encoder=AppointmentEncoder,
+        safe=False
+        )
+
+@require_http_methods(["PUT"]) 
+def api_delete_appointment(request, pk):
+    if request.method == 'PUT':
+        content = json.loads(request.body)
+        if "status" in content:
+            status = "canceled"
+            content["status"] = status
+        appointment = Appointment.objects.get(id=pk)
+        Appointment.objects.filter(id=pk).update(**content)
+        return JsonResponse(
+        appointment,
+        encoder=AppointmentEncoder,
+        safe=False
+        )
+
+

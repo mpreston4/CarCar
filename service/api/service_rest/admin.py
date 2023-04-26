@@ -15,7 +15,8 @@ class AutomobileVOAdmin(admin.ModelAdmin):
 @admin.register(Appointment)
 class AppointmentAdmin(admin.ModelAdmin):
      list_display = (
-          "date_time",
+          "date",
+          "time",
           "reason",
           "status",
           "vin",

@@ -53,6 +53,12 @@ class SaleEncoder(ModelEncoder):
     }
 
 
+@require_http_methods(["GET"])
+def api_automobiles(request):
+    automobiles = AutomobileVO.objects.all()
+    return JsonResponse({"autos": automobiles}, encoder=AutomobileVOEncoder)
+
+
 @require_http_methods(["GET", "POST"])
 def api_salespeople(request):
     if request.method == "GET":
@@ -107,8 +113,8 @@ def api_sales(request):
         except Salesperson.DoesNotExist:
             return JsonResponse({"message": "Person does not exist"}, status=400)
         try:
-            first_name = content["customer"]
-            customer = Customer.objects.get(first_name=first_name)
+            id = content["customer"]
+            customer = Customer.objects.get(id=id)
             content["customer"] = customer
         except Customer.DoesNotExist:
             return JsonResponse({"message": "Customer does not exist"})

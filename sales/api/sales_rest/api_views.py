@@ -17,6 +17,14 @@ def api_automobiles(request):
     return JsonResponse({"autos": automobiles}, encoder=AutomobileVOEncoder)
 
 
+@require_http_methods("PUT")
+def api_automobiles_update(request, vin):
+    content = json.loads(request.body)
+    AutomobileVO.objects.filter(vin=vin).update(**content)
+    automobile = AutomobileVO.objects.get(vin=vin)
+    return JsonResponse(automobile, encoder=AutomobileVOEncoder, safe=False)
+
+
 @require_http_methods(["GET", "POST"])
 def api_salespeople(request):
     if request.method == "GET":
@@ -83,7 +91,7 @@ def api_sales(request):
             customer = Customer.objects.get(id=id)
             content["customer"] = customer
         except Customer.DoesNotExist:
-            return JsonResponse({"message": "Customer does not exist"})
+            return JsonResponse({"message": "Customer does not exist"}, status=404)
         sale = Sale.objects.create(**content)
         return JsonResponse(sale, encoder=SaleEncoder, safe=False)
 

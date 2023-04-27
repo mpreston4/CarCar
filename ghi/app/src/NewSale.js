@@ -23,8 +23,6 @@ function NewSale() {
     }
     const FilteredAutos = Automobiles.filter((a) => a.sold === false)
 
-
-
     const fetchSalespeople = async () => {
         const response = await fetch('http://localhost:8090/api/salespeople/')
 
@@ -43,7 +41,6 @@ function NewSale() {
         }
     }
 
-
     useEffect(() => {
         fetchSalespeople();
     }, []);
@@ -55,7 +52,6 @@ function NewSale() {
     useEffect(() => {
         fetchVIN();
     }, []);
-
 
     const handleAutoVinChange = (event) => {
         const value = event.target.value
@@ -76,7 +72,6 @@ function NewSale() {
         const value = event.target.value
         setPrice(value)
     }
-
 
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -106,6 +101,30 @@ function NewSale() {
             setCustomer('')
             setPrice('')
         }
+
+        const automobileVOUpdateUrl = 'http://localhost:8090/api/automobiles/' + AutomobileVin + "/"
+        const updateAutomobileVO = {
+            method: "PUT",
+            body: JSON.stringify({ sold: true }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        const responseUpdateVO = await fetch(automobileVOUpdateUrl, updateAutomobileVO)
+
+        const automobileUpdateUrl = 'http://localhost:8100/api/automobiles/' + AutomobileVin + "/"
+        const updateAutomobile = {
+            method: "PUT",
+            body: JSON.stringify({ sold: true }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        const responseUpdate = await fetch(automobileUpdateUrl, updateAutomobile)
+
+        fetchVIN()
+        const FilteredAutos = Automobiles.filter((a) => a.sold === false)
+
     }
 
     return (
@@ -122,7 +141,7 @@ function NewSale() {
                                 <option value="">Choose an automobile VIN</option>
                                 {FilteredAutos.map(automobile => {
                                     return (
-                                        <option key={automobile.id} value={automobile.vin}>
+                                        <option key={automobile.vin} value={automobile.vin}>
                                             {automobile.vin}
                                         </option>
                                     )

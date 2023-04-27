@@ -29,8 +29,8 @@ function AutomobileList() {
         <thead>
           <tr>
             <th>VIN</th>
-            <th>color</th>
-            <th>year</th>
+            <th>Color</th>
+            <th>Year</th>
             <th>Model</th>
             <th>Manufacturer</th>
             <th>Sold</th>

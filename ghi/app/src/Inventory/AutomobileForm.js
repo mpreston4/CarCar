@@ -70,7 +70,7 @@ function AutomobileForm() {
         <div className="row">
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
-                    <h1>Create an Automobile</h1>
+                    <h1>Add an Automobile to the Inventory</h1>
                     <form onSubmit={handlesubmit} id="create-technician-form">
                         <div className="form-floating mb-3">
                             <input onChange={handleColor} value={color} placeholder="color" required type="text" name="color" id="color" className="form-control" />

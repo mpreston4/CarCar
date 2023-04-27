@@ -1,24 +1,24 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
-import TechnicianList from './TechnicianList';
-import TechnicianForm from './TechnicianForm';
-import AppointmentList from './AppointmentList'
-import AppointmentForm from './AppointmentForm';
-import History from './History';
-import SalespeopleList from './SalespeopleList';
-import NewSalesperson from './NewSalesperson';
-import NewCustomer from './NewCustomer';
-import CustomersList from './CustomersList';
-import SalesList from './SalesList';
-import NewSale from './NewSale';
-import SalesHistoryList from './SalespersonHistory';
-import ManufacturerList from './MaufacturersList'
-import NewManufacturer from './CreateManufacturer';
-import ModelList from './ModelsList';
-import CreateModel from './CreateModel';
-import AutomobileList from './Automobilelist';
-import AutomobileForm from './AutomobileForm';
+import TechnicianList from './Services/TechnicianList';
+import TechnicianForm from './Services/TechnicianForm';
+import AppointmentList from './Services/AppointmentList'
+import AppointmentForm from './Services/AppointmentForm';
+import History from './Services/History';
+import SalespeopleList from './Sales/SalespeopleList';
+import NewSalesperson from './Sales/NewSalesperson';
+import NewCustomer from './Sales/NewCustomer';
+import CustomersList from './Sales/CustomersList';
+import SalesList from './Sales/SalesList';
+import NewSale from './Sales/NewSale';
+import SalesHistoryList from './Sales/SalespersonHistory';
+import ManufacturerList from './Inventory/MaufacturersList'
+import NewManufacturer from './Inventory/CreateManufacturer';
+import ModelList from './Inventory/ModelsList';
+import CreateModel from './Inventory/CreateModel';
+import AutomobileList from './Inventory/Automobilelist';
+import AutomobileForm from './Inventory/AutomobileForm';
 
 function App() {
   return (

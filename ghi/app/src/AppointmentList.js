@@ -41,7 +41,8 @@ function AppointmentList() {
       },
     });
     if (response.ok) {
-        setAppointments((prev) => prev.filter((app) => app.id !== parseInt(id)));    }
+      setAppointments((prev) => prev.filter((app) => app.id !== parseInt(id)));
+    }
   };
 
   const handleFinish = async (event) => {
@@ -54,54 +55,54 @@ function AppointmentList() {
       },
     });
     if (response.ok) {
-        setAppointments((prev) => prev.filter((app) => app.id !== parseInt(id)));    }
+      setAppointments((prev) => prev.filter((app) => app.id !== parseInt(id)));
     }
-    useEffect(() => {
-        getAppointments();
-        getAutomobiles();
-    }, []);
-    const filteredAppointments = appointments.filter(app => app.status === "created");
+  }
+  useEffect(() => {
+    getAppointments();
+    getAutomobiles();
+  }, []);
+  const filteredAppointments = appointments.filter(app => app.status === "created");
 
-    return (
+  return (
     <div className="container">
-        <table className="table table-striped">
+      <table className="table table-striped">
         <thead>
-            <tr>
-                <th>VIN</th>
-                <th>Is VIP?</th>
-                <th>Customer</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Technician</th>
-                <th>Reason</th>
-            </tr>
+          <tr>
+            <th>VIN</th>
+            <th>Is VIP?</th>
+            <th>Customer</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Technician</th>
+            <th>Reason</th>
+          </tr>
         </thead>
         <tbody>
-            {filteredAppointments.map((app) => {
+          {filteredAppointments.map((app) => {
             return (
-                <tr key={app.id}>
-                    <td>{app.vin}</td>
-                    {isVip(app.vin)}
-                    <td>{app.customer}</td>
-                    <td>{app.date}</td>
-                    <td>{app.time}</td>
-                    <td>{app.technician.first_name}</td>
-                    <td>{app.reason}</td>
-                    <td>
-                    <button className="btn btn-danger" id={app.id} onClick={handleCancel}>
-                        Cancel
-                    </button>
-                    <button className="btn btn-success" id={app.id} onClick={handleFinish}>
-                        Finish
-                    </button>
-                    </td>
-                </tr>
+              <tr key={app.id}>
+                <td>{app.vin}</td>
+                {isVip(app.vin)}
+                <td>{app.customer}</td>
+                <td>{app.date}</td>
+                <td>{app.time}</td>
+                <td>{app.technician.first_name}</td>
+                <td>{app.reason}</td>
+                <td>
+                  <button className="btn btn-danger" id={app.id} onClick={handleCancel}>
+                    Cancel
+                  </button>
+                  <button className="btn btn-success" id={app.id} onClick={handleFinish}>
+                    Finish
+                  </button>
+                </td>
+              </tr>
             );
-            })}
+          })}
         </tbody>
-        </table>
+      </table>
     </div>
-    );
+  );
 }
 export default AppointmentList
-

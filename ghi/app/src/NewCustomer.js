@@ -8,7 +8,6 @@ function NewCustomer() {
     const [PhoneNumber, setPhoneNumber] = useState('')
 
 
-
     const handleFirstNameChange = (event) => {
         const value = event.target.value
         setFirstName(value)

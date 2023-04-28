@@ -8,7 +8,6 @@ class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
     properties = [
     "vin",
-    "sold",
     ]
 
 class TechnicianEncoder(ModelEncoder):
@@ -86,7 +85,7 @@ def api_delete_techinicians(request, pk):
 @require_http_methods(["GET", "POST"])
 def api_appointment(request):
     if request.method == "GET":
-        appointments = Appointment.objects.all()
+        appointments = Appointment.objects.filter(status="created")
         return JsonResponse(
             {"appointments": appointments},
             encoder=AppointmentEncoder,

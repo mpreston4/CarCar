@@ -29,7 +29,7 @@ function Nav() {
           <NavLink className="navbar-brand" to="/technician">Technician List</NavLink>
           <NavLink className="navbar-brand" to="/technician/new/">Add a Technician</NavLink>
           <NavLink className="navbar-brand" to="/appointments/">Appointment List</NavLink>
-          <NavLink className="navbar-brand" to="/appointments/new/">Add an Appointment</NavLink>
+          <NavLink className="navbar-brand" to="/appointments/new/">Create an Appointment</NavLink>
           <NavLink className="navbar-brand" to="/servicehistory/">Service History</NavLink>
           <NavLink className="navbar-brand" to="/automobiles/new">Create an Automobile</NavLink>
 

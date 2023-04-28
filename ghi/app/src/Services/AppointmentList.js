@@ -62,7 +62,6 @@ function AppointmentList() {
     getAppointments();
     getAutomobiles();
   }, []);
-  const filteredAppointments = appointments.filter(app => app.status === "created");
 
   return (
     <div className="container">
@@ -79,7 +78,7 @@ function AppointmentList() {
           </tr>
         </thead>
         <tbody>
-          {filteredAppointments.map((app) => {
+          {appointments.map((app) => {
             return (
               <tr key={app.id}>
                 <td>{app.vin}</td>

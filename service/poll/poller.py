@@ -17,12 +17,18 @@ def get_automobiles():
     content = json.loads(response.content)
     print("hi")
     for automobile in content["autos"]:
-        AutomobileVO.objects.update_or_create(
-            vin = automobile["vin"],
-            defaults = {
-                "sold": automobile["sold"]
-            }
-        )
+        if automobile["sold"] == True:
+            AutomobileVO.objects.update_or_create(
+                vin=automobile["vin"]
+
+            )
+    # for automobile in content["autos"]:
+    #     AutomobileVO.objects.update_or_create(
+    #         vin = automobile["vin"],
+    #         defaults = {
+    #             "sold": automobile["sold"]
+    #         }
+    #     )
 def poll(repeat = True):
     while True:
         print('Service poller polling for data')

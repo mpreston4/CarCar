@@ -10,7 +10,7 @@ function History() {
     setFiltervalue(value)
   }  
   const getData = async () => {
-    const response = await fetch("http://localhost:8080/api/appointments/");
+    const response = await fetch("http://localhost:8080/api/appointments/all");
     if (response.ok) {
       const data = await response.json();
       console.log(data);

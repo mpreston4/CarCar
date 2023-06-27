@@ -8,7 +8,7 @@ Team:
 ## Design
 
 ## Service microservice
-
+Hello
 The Django microservice powering our service comprises of three models, namely Appointment, AutomobileVO, and Technicians. The Appointment model serves a critical function in scheduling appointments for our customers to service their cars. It is worth noting that each car need not have a VIN that has been sold from inventory, thereby making it unnecessary to establish a foreign key relationship to AutomobileVO. However, there is a foreign key relationship to Technicians since each appointment must be serviced by a technician. The Technicians model is a straightforward model that creates technicians, including their first and last names and employee ID.
 
 Finally, we have the AutomobileVO model, which stores data collected from the poller.py file linked directly to the automobile inventory microservice. Whenever there is an update to this inventory, such as a newly added or sold car, the data is polled from our service microservice's poller.py file every 60 seconds. Additionally, I have incorporated an if statement that creates an instance in AutomobileVO only if the sold property is true, as we require only the VIN of sold cars. The AutomobileVO model has only one field, the VIN field. The reason for this is that the front-end column checks if the VIN of an appointment is a VIP, meaning if the VIN was sold from the dealership. If it is sold from the dealership, that appointment receives VIP service.
